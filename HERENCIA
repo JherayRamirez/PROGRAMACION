@@ -1,0 +1,117 @@
+// RAMIREZ PROAÑO RICARDO JHERAY 
+// EJERCICIO HERENCIA
+public class Persona {
+
+    private String nombre; private String apellidos; private int edad;
+
+    public Persona() { nombre = ""; apellidos = ""; edad = 0; }
+
+    public Persona (String nombre, String apellidos, int edad) {
+
+        this.nombre = nombre; this.apellidos = apellidos; this.edad = edad; }
+
+    public String getNombre() { return nombre;  }
+
+    public String getApellidos () { return apellidos;  }
+
+    public int getEdad() { return edad;  }
+
+}
+public class Profesor extends Persona {  //HERENCIA.com
+
+    private String IdProfesor;
+
+    public Profesor () {     super();
+
+        IdProfesor = "Unknown";}
+
+    public Profesor (String nombre, String apellidos, int edad) {
+
+        super(nombre, apellidos, edad);
+
+        IdProfesor = "Unknown";   }
+
+    public void setIdProfesor (String IdProfesor) { this.IdProfesor = IdProfesor;   }
+
+    public String getIdProfesor () { return IdProfesor;   }
+
+    public void mostrarDatos() {
+
+        System.out.println ("Datos Profesor. Profesor de nombre: " + getNombre() + " " +  getApellidos() +
+
+ " con Id de profesor: " + getIdProfesor() );   } 
+
+}
+public class ProfesorInterino extends Profesor {
+
+    private Calendar FechaComienzoInterinidad;
+
+    public ProfesorInterino(Calendar fechaComienzaInterinidad) {
+
+        super();
+
+        FechaComienzoInterinidad = fechaComienzaInterinidad; }
+
+    public ProfesorInterino (String nombre, String apellidos, int edad, Calendar fechaComienzaInterinidad) {
+
+        super(nombre, apellidos, edad);
+
+        FechaComienzoInterinidad = fechaComienzaInterinidad; }
+
+    public Calendar getFechaComienzoInterinidad () { return FechaComienzoInterinidad; }
+
+    public void mostrarDatos() { System.out.println("Datos ProfesorInterino. Comienzo interinidad: " +
+
+ FechaComienzoInterinidad.getTime().toString() );  }
+
+} 
+public class ListinProfesores{
+
+    private ArrayList <Profesor> listinProfesores;
+
+    //Constructor
+
+    public ListinProfesores () {
+
+        listinProfesores = new ArrayList <Profesor> (); }
+
+    //Métodos
+
+    public void addProfesor (Profesor profesor) {
+
+        listinProfesores.add(profesor); }     // Cierre método addProfesor
+
+    public void listar() {
+
+        System.out.println ("Se procede a mostrar los datos de los profesores existentes en el listín");
+
+        for (Profesor tmp: listinProfesores) {       //Uso de for extendido
+
+            tmp.mostrarDatos(); }
+
+    } //Cierre método
+
+} 
+public class TestHerencia4 {
+
+    public static void main (String [ ] Args) {
+
+        Profesor profesor1 = new Profesor ("Juan", "Hernández García", 33);
+
+        profesor1.setIdProfesor("Prof 22-387-11");
+
+        Calendar fecha1 = Calendar.getInstance();
+
+        fecha1.set(2019,10,22); //Los meses van de 0 a 11, luego 10 representa noviembre
+
+        ProfesorInterino interino1 = new ProfesorFacultad("José Luis", "Morales Pérez", 54, fecha1);
+
+        ListinProfesores listin1 = new ListinProfesores ();
+
+        listin1.addProfesor(profesor1);
+
+        listin1.addProfesor(interino1);
+
+        listin1.listar(); } //Cierre del main
+
+}
